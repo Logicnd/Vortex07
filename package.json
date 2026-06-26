@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "publish": "node --env-file=.env scripts/publish-changes.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
+  }
+}

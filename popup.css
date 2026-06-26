@@ -1,0 +1,183 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 292px;
+  margin: 0;
+  padding: 3px;
+  background: #d4d0c8;
+  font-family: Tahoma, Verdana, Arial, sans-serif;
+  font-size: 11px;
+  color: #000;
+}
+
+.popup-shell {
+  border: 2px outset #ece9d8;
+  background: #ece9d8;
+}
+
+.popup-shell.popup-off {
+  opacity: 0.92;
+}
+
+.popup-shell.popup-off .popup-client {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* Luna-style title bar (Vortex lavender, not default XP blue) */
+.popup-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 6px;
+  background: linear-gradient(180deg, #b8aee0 0%, #8f82c4 48%, #7a6db8 100%);
+  border-bottom: 1px solid #5a4a9a;
+  color: #fff;
+  font-weight: bold;
+  font-size: 11px;
+  line-height: 1.2;
+  user-select: none;
+}
+
+.popup-titlebar-glyph {
+  display: inline-block;
+  min-width: 22px;
+  padding: 0 3px;
+  text-align: center;
+  font-size: 9px;
+  letter-spacing: -0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.popup-titlebar-text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.popup-client {
+  padding: 6px;
+  background: #ece9d8;
+}
+
+/* XP group boxes */
+.popup-group {
+  margin: 0 0 6px;
+  padding: 6px 8px 8px;
+  border: 1px solid #808080;
+  background: #ece9d8;
+}
+
+.popup-group:last-child {
+  margin-bottom: 0;
+}
+
+.popup-group legend {
+  padding: 0 3px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #1d1033;
+}
+
+.popup-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 1px;
+  cursor: pointer;
+  line-height: 1.25;
+}
+
+.popup-row:hover {
+  background: #ddd8eb;
+}
+
+.popup-row-master {
+  font-weight: bold;
+  margin-bottom: 2px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c0c0c0;
+}
+
+.popup-row input[type="checkbox"] {
+  margin: 0;
+  width: 13px;
+  height: 13px;
+}
+
+.popup-hint {
+  margin: 4px 0 0;
+  padding: 0 1px;
+  font-size: 10px;
+  line-height: 1.35;
+  color: #444;
+}
+
+.popup-stat {
+  margin: 3px 0 0;
+  padding: 2px 4px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #3b2f8a;
+  background: #ddd8eb;
+  border: 1px inset #c0c0c0;
+}
+
+.popup-field {
+  margin-top: 4px;
+}
+
+.popup-field label {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #000;
+}
+
+.popup-field input[type="text"] {
+  width: 100%;
+  padding: 2px 4px;
+  border: 2px inset #c0c0c0;
+  background: #fff;
+  font-family: Tahoma, Verdana, Arial, sans-serif;
+  font-size: 10px;
+  color: #000;
+}
+
+.popup-field input[type="text"]:disabled {
+  background: #ddd8eb;
+  color: #666;
+}
+
+.popup-statusbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 6px;
+  border-top: 1px solid #808080;
+  background: #ece9d8;
+  font-size: 10px;
+  color: #333;
+  line-height: 1.3;
+}
+
+.popup-statusbar-ver {
+  color: #555;
+  white-space: nowrap;
+}
+
+#saveStatus.save-ok {
+  color: #3b2f8a;
+  font-weight: bold;
+}
+
+#saveStatus.save-err {
+  color: #800080;
+  font-weight: bold;
+}

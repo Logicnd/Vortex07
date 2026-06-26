@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Vortex07",
+  "version": "1.6.0",
+  "description": "2007-style Vortex UI, player search, termed archive, and global Reputation.",
+  "icons": {
+    "16": "Assets/icon16.png",
+    "48": "Assets/icon48.png",
+    "128": "Assets/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "Assets/icon16.png",
+      "48": "Assets/icon48.png",
+      "128": "Assets/icon128.png"
+    },
+    "default_title": "VORTEX07"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.playvortex.io/*"],
+      "css": ["styles.css"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "permissions": ["storage"],
+  "host_permissions": [
+    "*://*.playvortex.io/*",
+    "https://*.vercel.app/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "matches": ["*://*.playvortex.io/*"],
+      "resources": ["Assets/*"]
+    }
+  ]
+}

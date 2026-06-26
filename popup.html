@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+
+  <body>
+    <div class="popup-shell" id="popupShell">
+      <div class="popup-titlebar">
+        <span class="popup-titlebar-glyph" aria-hidden="true">V07</span>
+        <span class="popup-titlebar-text">Vortex07 Properties</span>
+      </div>
+
+      <div class="popup-client">
+        <fieldset class="popup-group" data-group="general">
+          <legend>General</legend>
+
+          <label class="popup-row popup-row-master">
+            <input type="checkbox" id="enabled" />
+            <span>Enable Vortex07</span>
+          </label>
+
+          <label class="popup-row">
+            <input type="checkbox" id="customNav" />
+            <span>Classic navigation tabs</span>
+          </label>
+
+          <label class="popup-row">
+            <input type="checkbox" id="classicFooter" />
+            <span>Classic footer legalese</span>
+          </label>
+
+          <label class="popup-row">
+            <input type="checkbox" id="retroButtons" />
+            <span>Windows XP style buttons</span>
+          </label>
+        </fieldset>
+
+        <fieldset class="popup-group" data-group="search">
+          <legend>Search</legend>
+
+          <label class="popup-row">
+            <input type="checkbox" id="userSearch" />
+            <span>Smart player search</span>
+          </label>
+
+          <label class="popup-row">
+            <input type="checkbox" id="banArchive" />
+            <span>Termed player archive</span>
+          </label>
+
+          <p class="popup-hint">
+            Archive saves snapshots as you browse. Termed users stay searchable
+            from your local registry.
+          </p>
+          <p class="popup-stat" id="archiveStat">Archive: loading…</p>
+        </fieldset>
+
+        <fieldset class="popup-group" data-group="social">
+          <legend>Social</legend>
+
+          <label class="popup-row">
+            <input type="checkbox" id="reputation" />
+            <span>Global Vortex07 Reputation</span>
+          </label>
+
+          <div class="popup-field">
+            <label for="reputationApiUrl">Custom rep API (optional)</label>
+            <input
+              type="text"
+              id="reputationApiUrl"
+              placeholder="Leave blank for community sync"
+              spellcheck="false"
+            />
+            <p class="popup-hint" id="repApiHint">
+              Uses the shared Vortex07 rep network by default. Override only if
+              you host your own sync API.
+            </p>
+          </div>
+        </fieldset>
+
+        <fieldset class="popup-group" data-group="dev">
+          <legend>Developer</legend>
+
+          <label class="popup-row">
+            <input type="checkbox" id="debugLogs" />
+            <span>Debug / API console logs</span>
+          </label>
+        </fieldset>
+      </div>
+
+      <div class="popup-statusbar">
+        <span id="saveStatus">Ready</span>
+        <span class="popup-statusbar-ver">v1.6.0</span>
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
