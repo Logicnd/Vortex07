@@ -1,4 +1,4 @@
-import { kv } from "@vercel/kv";
+import { Redis } from "@upstash/redis";
 
 const memoryStore = globalThis.__vortex07RepStore || {
   counts: {},
@@ -6,21 +6,57 @@ const memoryStore = globalThis.__vortex07RepStore || {
 };
 globalThis.__vortex07RepStore = memoryStore;
 
-function hasKv() {
-  return Boolean(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN);
+function resolveRedisCredentials() {
+  const pairs = [
+    [
+      process.env.UPSTASH_REDIS_REST_URL,
+      process.env.UPSTASH_REDIS_REST_TOKEN,
+    ],
+    [process.env.KV_REST_API_URL, process.env.KV_REST_API_TOKEN],
+    [process.env.STORAGE_URL, process.env.STORAGE_TOKEN],
+    [process.env.STORAGE_REST_API_URL, process.env.STORAGE_REST_API_TOKEN],
+  ];
+
+  for (const [url, token] of pairs) {
+    if (url && token) return { url, token };
+  }
+
+  return null;
+}
+
+let redisClient = null;
+
+function getRedis() {
+  if (redisClient) return redisClient;
+
+  const creds = resolveRedisCredentials();
+  if (!creds) return null;
+
+  redisClient = new Redis({
+    url: creds.url,
+    token: creds.token,
+  });
+
+  return redisClient;
+}
+
+function hasPersistentStore() {
+  return Boolean(getRedis());
 }
 
 async function getCount(userId) {
-  if (hasKv()) {
-    const value = await kv.get(`rep:count:${userId}`);
+  const redis = getRedis();
+  if (redis) {
+    const value = await redis.get(`rep:count:${userId}`);
     return Number(value) || 0;
   }
   return Number(memoryStore.counts[userId]) || 0;
 }
 
 async function hasVoted(userId, voterId) {
-  if (hasKv()) {
-    const voted = await kv.sismember(`rep:voters:${userId}`, voterId);
+  const redis = getRedis();
+  if (redis) {
+    const voted = await redis.sismember(`rep:voters:${userId}`, voterId);
     return Boolean(voted);
   }
   const voters = memoryStore.voters[userId] || [];
@@ -28,12 +64,13 @@ async function hasVoted(userId, voterId) {
 }
 
 async function addVote(userId, voterId) {
-  if (hasKv()) {
-    const added = await kv.sadd(`rep:voters:${userId}`, voterId);
+  const redis = getRedis();
+  if (redis) {
+    const added = await redis.sadd(`rep:voters:${userId}`, voterId);
     if (!added) {
       return { added: false, count: await getCount(userId) };
     }
-    const count = await kv.incr(`rep:count:${userId}`);
+    const count = await redis.incr(`rep:count:${userId}`);
     return { added: true, count: Number(count) || 0 };
   }
 
@@ -81,7 +118,7 @@ export default async function handler(req, res) {
       }),
     );
 
-    res.status(200).json({ results });
+    res.status(200).json({ results, persistent: hasPersistentStore() });
     return;
   }
 
@@ -98,7 +135,7 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     const count = await getCount(userId);
     const voted = voterId ? await hasVoted(userId, voterId) : false;
-    res.status(200).json({ count, hasVoted: voted });
+    res.status(200).json({ count, hasVoted: voted, persistent: hasPersistentStore() });
     return;
   }
 
@@ -108,6 +145,7 @@ export default async function handler(req, res) {
       count: result.count,
       hasVoted: true,
       added: result.added,
+      persistent: hasPersistentStore(),
     });
     return;
   }

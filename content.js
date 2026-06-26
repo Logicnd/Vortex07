@@ -13,7 +13,7 @@ const REPUTATION_VOTER_KEY = "vortex07VoterId";
 const REPUTATION_MY_VOTES_KEY = "vortex07MyReputationVotes";
 const REPUTATION_CACHE_KEY = "vortex07ReputationCache";
 const REPUTATION_PENDING_KEY = "vortex07ReputationPending";
-const COMMUNITY_REPUTATION_API = "https://vortex07-reputation.vercel.app/api";
+const COMMUNITY_REPUTATION_API = "https://vortex07.vercel.app/api";
 
 const defaultSettings = {
   enabled: true,

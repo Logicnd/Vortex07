@@ -39,7 +39,7 @@ Click the Vortex07 toolbar icon to open the settings popup:
 
 ## Reputation sync
 
-By default, reputation uses the community API at `https://vortex07-reputation.vercel.app/api`. Votes and counts are shared between everyone running Vortex07.
+By default, reputation uses the community API at `https://vortex07.vercel.app/api`. Votes and counts are shared between everyone running Vortex07.
 
 To host your own sync server, deploy the [`reputation-sync/`](reputation-sync/) folder to Vercel (see [`reputation-sync/README.md`](reputation-sync/README.md)), then paste your API base URL into the popup.
 

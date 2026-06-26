@@ -101,7 +101,7 @@ function updateRepApiHint(settings) {
   const url = String(settings.reputationApiUrl || "").trim();
   if (!url) {
     hint.textContent =
-      "Using community rep sync (vortex07-reputation.vercel.app). Counts are shared across all Vortex07 users.";
+      "Using community rep sync (vortex07.vercel.app). Counts are shared across all Vortex07 users.";
     return;
   }
 

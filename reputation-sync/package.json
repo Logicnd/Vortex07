@@ -2,6 +2,6 @@
   "name": "vortex07-reputation-sync",
   "private": true,
   "dependencies": {
-    "@vercel/kv": "^3.0.0"
+    "@upstash/redis": "^1.34.3"
   }
 }
