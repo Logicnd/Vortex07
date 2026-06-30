@@ -32,7 +32,7 @@
   /** Update button label to reflect current mode. */
   function updateButton(btn, mode) {
     const effective = effectiveMode(mode);
-    const labels = { light: '☀ Light', dark: '🌑 Dark', system: '⚙ Auto' };
+    const labels = { light: 'Light', dark: 'Dark', system: 'Auto' };
     btn.textContent = labels[mode] || labels.system;
     btn.title = `Theme: ${mode} (click to cycle)`;
     btn.setAttribute('aria-label', `Current theme: ${mode}. Click to change.`);

@@ -1,115 +1,185 @@
-/**
- * forum.js — Vortex07 website community forum renderer.
- *
- * Fetches thread list from GET https://vortex07.vercel.app/api/forum
- * and renders them into #forum-list as retro-styled post cards.
- * Read-only — posting is done via the Forum tab inside the extension.
- */
 (function () {
-  'use strict';
+  "use strict";
 
-  const API_URL = 'https://vortex07.vercel.app/api/forum';
-  const LIST_ID = 'forum-list';
-  const STATUS_ID = 'forum-status';
+  var API = "https://vortex07.vercel.app/api/forum";
+  var VOTER_KEY = "v07-forum-voter-id";
 
-  /** Format an ISO date string as a human-readable relative or absolute date. */
-  function formatDate(iso) {
-    if (!iso) return '';
-    const d = new Date(iso);
-    if (isNaN(d)) return iso;
-    const now = Date.now();
-    const diff = now - d.getTime();
-    const mins = Math.floor(diff / 60000);
-    if (mins < 1)   return 'just now';
-    if (mins < 60)  return mins + 'm ago';
-    const hrs = Math.floor(mins / 60);
-    if (hrs < 24)   return hrs + 'h ago';
-    const days = Math.floor(hrs / 24);
-    if (days < 7)   return days + 'd ago';
-    return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+  function getVoterId() {
+    var id = localStorage.getItem(VOTER_KEY);
+    if (!id || id.length < 8) {
+      id =
+        typeof crypto !== "undefined" && crypto.randomUUID
+          ? crypto.randomUUID()
+          : "v" + Date.now() + "-" + Math.random().toString(36).slice(2, 10);
+      localStorage.setItem(VOTER_KEY, id);
+    }
+    return id;
   }
 
-  /** Sanitise a string for safe insertion as text content. */
   function esc(str) {
-    const d = document.createElement('div');
-    d.textContent = String(str ?? '');
+    var d = document.createElement("div");
+    d.textContent = String(str == null ? "" : str);
     return d.innerHTML;
   }
 
-  /** Show a status message in the status container. */
-  function setStatus(msg) {
-    const el = document.getElementById(STATUS_ID);
-    if (el) el.textContent = msg;
+  function formatDate(ms) {
+    if (!ms) return "";
+    var d = new Date(Number(ms) || ms);
+    if (isNaN(d.getTime())) return "";
+    return d.toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
   }
 
-  /** Render an array of thread objects into the list container. */
+  function setStatus(msg, isError) {
+    var el = document.getElementById("forum-status");
+    if (!el) return;
+    el.textContent = msg || "";
+    el.classList.toggle("forum-status--error", Boolean(isError));
+  }
+
   function renderThreads(threads) {
-    const list = document.getElementById(LIST_ID);
+    var list = document.getElementById("forum-list");
     if (!list) return;
 
-    setStatus('');
-
-    if (!threads || threads.length === 0) {
-      list.innerHTML = '<div class="forum-status">No threads yet. Be the first to post from the extension!</div>';
+    if (!threads || !threads.length) {
+      list.innerHTML =
+        '<p class="forum-empty">No posts yet. You can be the first one below.</p>';
       return;
     }
 
-    list.innerHTML = threads.map(function (thread) {
-      const title    = esc(thread.title   || thread.subject || '(untitled)');
-      const author   = esc(thread.author  || thread.userId  || thread.user || 'Anonymous');
-      const replies  = Number(thread.replyCount ?? thread.replies ?? 0);
-      const views    = thread.views != null ? Number(thread.views) : null;
-      const date     = formatDate(thread.createdAt || thread.date || thread.timestamp);
-      const id       = thread.id || thread._id || '';
+    list.innerHTML = threads
+      .map(function (thread) {
+        var title = esc(thread.title || "(no title)");
+        var author = esc(thread.authorName || "Guest");
+        var replies = Number(thread.replyCount) || 0;
+        var date = formatDate(thread.createdAt || thread.lastReplyAt);
+        var replyNote =
+          replies > 0
+            ? replies + " repl" + (replies === 1 ? "y" : "ies")
+            : "no replies yet";
 
-      const viewMeta = views != null
-        ? `<span>${views.toLocaleString()} view${views !== 1 ? 's' : ''}</span>`
-        : '';
-
-      return (
-        '<div class="forum-thread" role="article">' +
-          '<span class="forum-thread__title">' + title + '</span>' +
-          '<div class="forum-thread__meta">' +
-            '<span>by <strong>' + author + '</strong></span>' +
-            '<span>' + replies.toLocaleString() + ' repl' + (replies !== 1 ? 'ies' : 'y') + '</span>' +
-            viewMeta +
-            (date ? '<span>' + date + '</span>' : '') +
-          '</div>' +
-        '</div>'
-      );
-    }).join('');
+        return (
+          '<article class="forum-post">' +
+          '<h3 class="forum-post__title">' +
+          title +
+          "</h3>" +
+          '<p class="forum-post__meta">' +
+          author +
+          " · " +
+          date +
+          " · " +
+          replyNote +
+          "</p>" +
+          "</article>"
+        );
+      })
+      .join("");
   }
 
-  /** Fetch threads from the API and render them. */
-  function loadForum() {
-    setStatus('Loading forum\u2026');
+  function loadThreads() {
+    setStatus("Loading posts…");
 
-    fetch(API_URL, { cache: 'no-cache' })
+    var url =
+      API +
+      "?action=threads&category=general&voterId=" +
+      encodeURIComponent(getVoterId());
+
+    fetch(url, { cache: "no-cache" })
       .then(function (res) {
-        if (!res.ok) throw new Error('HTTP ' + res.status + ' ' + res.statusText);
+        if (!res.ok) throw new Error("HTTP " + res.status);
         return res.json();
       })
       .then(function (data) {
-        // The API may return an array directly or wrap it in { threads: [...] }
-        const threads = Array.isArray(data) ? data : (data.threads || data.posts || []);
-        renderThreads(threads);
+        setStatus("");
+        renderThreads(data.threads || []);
       })
-      .catch(function (err) {
-        const list = document.getElementById(LIST_ID);
-        if (list) {
-          list.innerHTML =
-            '<div class="forum-status">' +
-              '⚠ Could not load forum threads. The API may be temporarily unavailable.' +
-            '</div>';
-        }
-        setStatus('');
-        console.error('[Vortex07 forum]', err);
+      .catch(function () {
+        setStatus(
+          "Could not load posts right now. You can still try submitting — it may work.",
+          true,
+        );
+        var list = document.getElementById("forum-list");
+        if (list) list.innerHTML = "";
       });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', loadForum);
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    var form = event.target;
+    var titleEl = form.querySelector('[name="title"]');
+    var nameEl = form.querySelector('[name="name"]');
+    var bodyEl = form.querySelector('[name="message"]');
+    var submitBtn = form.querySelector('[type="submit"]');
+
+    var title = (titleEl && titleEl.value.trim()) || "";
+    var authorName = (nameEl && nameEl.value.trim()) || "";
+    var body = (bodyEl && bodyEl.value.trim()) || "";
+
+    if (!title || !body) {
+      setStatus("Title and message are required.", true);
+      return;
+    }
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Posting…";
+    }
+    setStatus("");
+
+    fetch(API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        action: "create-thread",
+        voterId: getVoterId(),
+        categoryId: "general",
+        title: title,
+        body: body,
+        authorName: authorName || "Guest",
+      }),
+    })
+      .then(function (res) {
+        return res.json().then(function (data) {
+          return { ok: res.ok, data: data };
+        });
+      })
+      .then(function (result) {
+        if (!result.ok || !result.data.ok) {
+          var err = (result.data && result.data.error) || "post failed";
+          throw new Error(err);
+        }
+
+        if (titleEl) titleEl.value = "";
+        if (bodyEl) bodyEl.value = "";
+        setStatus("Posted. It should show up in the list below.");
+        loadThreads();
+      })
+      .catch(function (err) {
+        setStatus("Could not post: " + (err.message || "unknown error"), true);
+      })
+      .finally(function () {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Post";
+        }
+      });
+  }
+
+  function init() {
+    var form = document.getElementById("forum-form");
+    if (form) form.addEventListener("submit", handleSubmit);
+    loadThreads();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
   } else {
-    loadForum();
+    init();
   }
 })();

@@ -3,141 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Vortex07 version history — full changelog from v2.0.0 to the current release.">
+  <meta name="description" content="Vortex07 version history.">
   <title>Changelog — Vortex07</title>
   <link rel="stylesheet" href="css/main.css">
-  <script>
-    (function(){var t=localStorage.getItem('v07-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);})();
-  </script>
+  <script>(function(){var t=localStorage.getItem('v07-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);})();</script>
 </head>
 <body>
 
-  <!-- ── Sticky Navigation ── -->
-  <nav class="site-nav" role="navigation" aria-label="Main navigation">
-    <div class="nav__brand">
-      <a href="index.html" class="nav__logo">VORTEX<span>07</span></a>
-    </div>
+  <nav class="site-nav" aria-label="Main">
+    <a href="index.html" class="nav__logo">Vortex07</a>
     <ul class="nav__links">
       <li><a href="index.html" class="nav__link">Home</a></li>
-      <li><a href="features.html" class="nav__link">Features</a></li>
       <li><a href="install.html" class="nav__link">Install</a></li>
       <li><a href="forum.html" class="nav__link">Forum</a></li>
-      <li><a href="changelog.html" class="nav__link active" aria-current="page">Changelog</a></li>
-      <li><a href="https://github.com/Logicnd/Vortex07" class="nav__link nav__link--github" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
+      <li><a href="features.html" class="nav__link">Features</a></li>
+      <li><a href="https://github.com/Logicnd/Vortex07" class="nav__link" target="_blank" rel="noopener noreferrer">GitHub</a></li>
     </ul>
-    <button class="theme-toggle" aria-label="Toggle theme">⚙ Auto</button>
+    <button type="button" class="theme-toggle" aria-label="Toggle theme">Auto</button>
   </nav>
 
-  <main role="main">
-    <div class="shell page-content">
+  <main class="wrap">
+    <div class="page-body">
+      <h1 class="page-title">Changelog</h1>
+      <p class="lead">June 2026 — everything below shipped this month.</p>
 
-      <h2 class="section-label">Version History</h2>
-
-      <!-- v2.6.0 -->
-      <div class="changelog-version">
-        <div class="changelog-version__header">
-          <span class="changelog-version__num">v2.6.0</span>
-          <span class="changelog-version__date">June 2026</span>
-          <span class="changelog-version__tag">Current</span>
-        </div>
-        <ul class="bullet-list">
-          <li><strong>content.js refactor:</strong> 10,383 lines split into 2,124-line core + 8 focused modules — <code>hover-ui</code>, <code>rep-ui</code>, <code>game-rating-ui</code>, <code>profile-ui</code>, <code>guestbook-ui</code>, <code>layout-ui</code>, <code>search-ui</code>, <code>friends-ui</code></li>
-          <li><strong>styles.css refactor:</strong> 6,773 lines replaced by a 9-line <code>@import</code> root + 9 CSS partials — <code>tokens</code>, <code>dark</code>, <code>jvortex</code>, <code>reset</code>, <code>layout</code>, <code>components</code>, <code>friends</code>, <code>profile</code>, <code>forum</code></li>
-          <li><strong>Carousel arrow fix:</strong> Friends-grid was being wrapped inside the <code>.section-header</code> DOM node — now extracted before carousel build, arrows display correctly</li>
-          <li><strong>IP daily rate limit:</strong> 15 reputation votes per IP per day — prevents alt-account farming</li>
-          <li><strong>Cloudflare Turnstile CAPTCHA:</strong> Wired into reputation vote submission with graceful degradation when not configured</li>
-          <li><strong><code>isVoteMethod</code> bug fix:</strong> Variable was undefined — vote POSTs were silently returning <code>405 Method Not Allowed</code>; votes now register correctly</li>
-          <li><strong>Admin reset-all endpoint:</strong> <code>POST /api/rep-admin</code> with <code>{ "action": "reset-all" }</code> — wipes all reputation data (admin-key protected)</li>
-          <li><strong>Icon asset resize:</strong> All three icons were 1024×1024 (~3 MB total); corrected to 16×16, 48×48, and 128×128 px</li>
-        </ul>
+      <div class="changelog-list">
+        <article class="changelog-item">
+          <h3>Latest build</h3>
+          <p>Code split, carousel fix, rep limits + Turnstile, admin rep reset, icon sizes fixed.</p>
+        </article>
+        <article class="changelog-item">
+          <h3>Rep + friends</h3>
+          <p>Account-bound rep, signed votes, friends pagination, friend search, dark mode pass, audit panel.</p>
+        </article>
+        <article class="changelog-item">
+          <h3>Forum + games</h3>
+          <p>Forum tab + API, game like/dislike, compare users, roulette.</p>
+        </article>
+        <article class="changelog-item">
+          <h3>First release</h3>
+          <p>2007 theme on playvortex.io, rep system, popup settings, service worker.</p>
+        </article>
       </div>
-
-      <!-- v2.5.0 -->
-      <div class="changelog-version">
-        <div class="changelog-version__header">
-          <span class="changelog-version__num">v2.5.0</span>
-          <span class="changelog-version__date">June 2026</span>
-        </div>
-        <ul class="bullet-list">
-          <li><strong>Account-bound rep votes:</strong> <code>actorUserId</code> now attached to every vote — reputation is tied to accounts, not just IPs</li>
-          <li><strong>HMAC-signed requests:</strong> Service worker signs all API calls; server rejects unsigned or tampered requests</li>
-          <li><strong>Friends A–Z sort &amp; pagination:</strong> 10 friends per page, alphabetically ordered, with left/right arrow navigation</li>
-          <li><strong>Social friend search:</strong> Search friends by display name directly from the social panel</li>
-          <li><strong>Dev audit panel:</strong> Spike detection dashboard for reputation admins — flags unusual voting bursts</li>
-          <li><strong>Dark mode overhaul:</strong> Complete rework of the dark/night theme — zero pure-white elements, consistent purple depth</li>
-        </ul>
-      </div>
-
-      <!-- v2.3.0 -->
-      <div class="changelog-version">
-        <div class="changelog-version__header">
-          <span class="changelog-version__num">v2.3.0</span>
-          <span class="changelog-version__date">June 2026</span>
-        </div>
-        <ul class="bullet-list">
-          <li><strong>Community Forum tab:</strong> Built-in discussion board powered by the Vortex07 API — browse and post threads without leaving playvortex.io</li>
-          <li>Forum threads, replies, and author data stored server-side via Vercel serverless functions</li>
-          <li>Forum API available at <code>GET /api/forum</code> (thread list) and <code>POST /api/forum</code> (new thread)</li>
-        </ul>
-      </div>
-
-      <!-- v2.2.0 -->
-      <div class="changelog-version">
-        <div class="changelog-version__header">
-          <span class="changelog-version__num">v2.2.0</span>
-          <span class="changelog-version__date">June 2026</span>
-        </div>
-        <ul class="bullet-list">
-          <li><strong>Game Like / Dislike voting:</strong> Thumbs-up / thumbs-down buttons injected on game detail pages — votes tracked globally via the API</li>
-          <li>Vote tallies displayed alongside the game title in XP-style UI</li>
-        </ul>
-      </div>
-
-      <!-- v2.1.0 -->
-      <div class="changelog-version">
-        <div class="changelog-version__header">
-          <span class="changelog-version__num">v2.1.0</span>
-          <span class="changelog-version__date">June 2026</span>
-        </div>
-        <ul class="bullet-list">
-          <li><strong>Compare Users:</strong> Side-by-side stat comparison panel for any two players</li>
-          <li><strong>Roulette button:</strong> Jump to a random friend's profile with one click</li>
-          <li>Game page polish — section headers, XP chrome, retro typography applied to all game views</li>
-          <li>Hover card improvements — faster load, smoother positioning</li>
-        </ul>
-      </div>
-
-      <!-- v2.0.0 -->
-      <div class="changelog-version">
-        <div class="changelog-version__header">
-          <span class="changelog-version__num">v2.0.0</span>
-          <span class="changelog-version__date">June 2026 — Initial Release</span>
-        </div>
-        <ul class="bullet-list">
-          <li><strong>Visual unification:</strong> Consistent 2007 Roblox / Windows XP Luna aesthetic across all playvortex.io pages</li>
-          <li><strong>Route parity:</strong> Theme applied to home, profile, social, game, search, and catalog pages</li>
-          <li>Section header bars — purple gradient with bold white uppercase labels</li>
-          <li>XP chrome panels — bevelled borders, subtle drop shadows</li>
-          <li>Global reputation system — vote on players, leaderboard, API-backed storage</li>
-          <li>Popup with per-feature toggles and settings</li>
-          <li>Service worker background script for API communication</li>
-          <li>Manifest V3 — compatible with Chrome, Edge, Brave, and Firefox</li>
-        </ul>
-      </div>
-
-      <!-- ── Footer ── -->
-      <footer class="site-footer" role="contentinfo">
-        <span>&copy; 2026 Vortex07 &nbsp;·&nbsp; v2.6.0</span>
-        <nav class="site-footer__links" aria-label="Footer links">
-          <a href="privacy.html">Privacy</a>
-          <a href="https://github.com/Logicnd/Vortex07" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="https://playvortex.io" target="_blank" rel="noopener noreferrer">playvortex.io</a>
-        </nav>
-      </footer>
-
     </div>
+
+    <footer class="site-footer">
+      <span>Made by <a href="https://github.com/Logicnd" target="_blank" rel="noopener noreferrer">Logicnd</a></span>
+      <span><a href="privacy.html">Privacy</a><a href="index.html">Home</a></span>
+    </footer>
   </main>
 
-<script src="js/theme.js"></script>
+  <script src="js/theme.js"></script>
 </body>
 </html>

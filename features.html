@@ -3,256 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Full feature list for Vortex07 — visual theme, friends carousel, reputation system, community forum, settings and developer tools.">
+  <meta name="description" content="What Vortex07 does on playvortex.io.">
   <title>Features — Vortex07</title>
   <link rel="stylesheet" href="css/main.css">
-  <script>
-    (function(){var t=localStorage.getItem('v07-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);})();
-  </script>
+  <script>(function(){var t=localStorage.getItem('v07-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);})();</script>
 </head>
 <body>
 
-  <!-- ── Sticky Navigation ── -->
-  <nav class="site-nav" role="navigation" aria-label="Main navigation">
-    <div class="nav__brand">
-      <a href="index.html" class="nav__logo">VORTEX<span>07</span></a>
-    </div>
+  <nav class="site-nav" aria-label="Main">
+    <a href="index.html" class="nav__logo">Vortex07</a>
     <ul class="nav__links">
       <li><a href="index.html" class="nav__link">Home</a></li>
-      <li><a href="features.html" class="nav__link active" aria-current="page">Features</a></li>
       <li><a href="install.html" class="nav__link">Install</a></li>
       <li><a href="forum.html" class="nav__link">Forum</a></li>
-      <li><a href="changelog.html" class="nav__link">Changelog</a></li>
-      <li><a href="https://github.com/Logicnd/Vortex07" class="nav__link nav__link--github" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
+      <li><a href="features.html" class="nav__link active" aria-current="page">Features</a></li>
+      <li><a href="https://github.com/Logicnd/Vortex07" class="nav__link" target="_blank" rel="noopener noreferrer">GitHub</a></li>
     </ul>
-    <button class="theme-toggle" aria-label="Toggle theme">⚙ Auto</button>
+    <button type="button" class="theme-toggle" aria-label="Toggle theme">Auto</button>
   </nav>
 
-  <main role="main">
-    <div class="shell page-content">
+  <main class="wrap">
+    <div class="page-body">
+      <h1 class="page-title">Features</h1>
 
-      <!-- ── Visual / Theme ── -->
-      <h2 class="section-label">🎨 Visual / Theme</h2>
-      <div class="feature-detail">
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">🟣</span>
-          <div class="feature-detail__text">
-            <strong>2007 Roblox Section Headers</strong>
-            Purple gradient bars with bold white uppercase labels — identical to the original 2007 Roblox site.
-          </div>
+      <div class="feature-grid">
+        <div class="panel">
+          <h3>Look</h3>
+          <ul class="plain">
+            <li>2007-style purple shell &amp; fonts</li>
+            <li>Dark mode toggle</li>
+            <li>Home, profile, social, games, catalog</li>
+          </ul>
         </div>
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">🪟</span>
-          <div class="feature-detail__text">
-            <strong>Windows XP Chrome</strong>
-            Panels have bevelled borders (lighter top/left, darker bottom/right) and a subtle drop shadow, exactly like XP Luna windows.
-          </div>
+        <div class="panel">
+          <h3>Social</h3>
+          <ul class="plain">
+            <li>Friends A–Z, 10/page arrows</li>
+            <li>Friend search, player search</li>
+            <li>Username hover card</li>
+          </ul>
         </div>
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">🔤</span>
-          <div class="feature-detail__text">
-            <strong>Retro System Fonts</strong>
-            Body text in Tahoma/Verdana; headers in Arial Black — the authentic early-2000s web stack, no Google Fonts.
-          </div>
+        <div class="panel">
+          <h3>Rep</h3>
+          <ul class="plain">
+            <li>Vote on players (logged in)</li>
+            <li>Leaderboard via API</li>
+            <li>Rate limits + signed votes</li>
+          </ul>
         </div>
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">🌑</span>
-          <div class="feature-detail__text">
-            <strong>Retro Night / Dark Mode</strong>
-            Deep purple tones replace every white surface. Zero pure-white elements — stays true to the XP night aesthetic.
-          </div>
-        </div>
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">🖱</span>
-          <div class="feature-detail__text">
-            <strong>XP-Style Buttons</strong>
-            Outset bevel border on idle, inset on press. Gold download buttons match the era's call-to-action style.
-          </div>
-        </div>
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">🖼</span>
-          <div class="feature-detail__text">
-            <strong>CSS Token System</strong>
-            All colours defined as CSS custom properties — easy to fork and retheme with a single file change.
-          </div>
+        <div class="panel">
+          <h3>Other</h3>
+          <ul class="plain">
+            <li>Forum, guestbook, game votes</li>
+            <li>Profile badges</li>
+            <li>Dev audit panel</li>
+          </ul>
         </div>
       </div>
-
-      <!-- ── Friends & Social ── -->
-      <h2 class="section-label">👥 Friends &amp; Social</h2>
-      <div class="feature-detail">
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">📋</span>
-          <div class="feature-detail__text">
-            <strong>A–Z Friends Carousel</strong>
-            Your friends list is sorted alphabetically and displayed 10 at a time, with left/right arrow navigation.
-          </div>
-        </div>
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">🔍</span>
-          <div class="feature-detail__text">
-            <strong>Friend Search</strong>
-            Search your friends by name in real-time from the social panel.
-          </div>
-        </div>
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">🎲</span>
-          <div class="feature-detail__text">
-            <strong>Roulette Button</strong>
-            Jump to a random friend's profile page with a single click.
-          </div>
-        </div>
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">⚖</span>
-          <div class="feature-detail__text">
-            <strong>Compare Users</strong>
-            Side-by-side stat comparison between any two players on playvortex.io.
-          </div>
-        </div>
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">👁</span>
-          <div class="feature-detail__text">
-            <strong>Profile Hover Cards</strong>
-            Hover over any player name to see a quick-view card with stats and reputation.
-          </div>
-        </div>
-      </div>
-
-      <!-- ── Reputation System ── -->
-      <h2 class="section-label">⭐ Reputation System</h2>
-      <div class="feature-detail">
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">👍</span>
-          <div class="feature-detail__text">
-            <strong>Vote on Any Player</strong>
-            Upvote or downvote any player's reputation. Votes are tied to your account ID and stored server-side.
-          </div>
-        </div>
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">🏆</span>
-          <div class="feature-detail__text">
-            <strong>Global Leaderboard</strong>
-            See the top-rated players in the Vortex07 community, sorted by net reputation score.
-          </div>
-        </div>
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">🛡</span>
-          <div class="feature-detail__text">
-            <strong>Anti-Alt-Farm Protection</strong>
-            IP-based daily rate limit (15 votes/IP/day) plus Cloudflare Turnstile CAPTCHA to prevent vote manipulation.
-          </div>
-        </div>
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">🔐</span>
-          <div class="feature-detail__text">
-            <strong>HMAC-Signed Requests</strong>
-            Reputation votes are signed by the extension's service worker — server rejects unauthenticated submissions.
-          </div>
-        </div>
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">📊</span>
-          <div class="feature-detail__text">
-            <strong>Audit Panel</strong>
-            Developer audit panel with spike detection to identify unusual voting patterns.
-          </div>
-        </div>
-      </div>
-
-      <!-- ── Forum ── -->
-      <h2 class="section-label">💬 Forum</h2>
-      <div class="feature-detail">
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">📌</span>
-          <div class="feature-detail__text">
-            <strong>Built-In Forum Tab</strong>
-            A community discussion board rendered directly inside the extension — no separate website required.
-          </div>
-        </div>
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">✍</span>
-          <div class="feature-detail__text">
-            <strong>Post &amp; Reply</strong>
-            Create threads and reply from the Forum tab inside the extension. The API is shared with this site.
-          </div>
-        </div>
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">🌐</span>
-          <div class="feature-detail__text">
-            <strong>Live on This Site</strong>
-            The forum thread list is readable here at <a href="forum.html">forum.html</a> — same data, no login needed.
-          </div>
-        </div>
-      </div>
-
-      <!-- ── Settings & Customisation ── -->
-      <h2 class="section-label">⚙ Settings &amp; Customisation</h2>
-      <div class="feature-detail">
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">🔧</span>
-          <div class="feature-detail__text">
-            <strong>Per-Feature Toggles</strong>
-            Enable or disable individual features (reputation display, friends carousel, forum tab, etc.) from the popup.
-          </div>
-        </div>
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">💾</span>
-          <div class="feature-detail__text">
-            <strong>Local Storage Only</strong>
-            All settings are saved in <code>chrome.storage.local</code> — they sync across your tabs but never leave your device.
-          </div>
-        </div>
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">🎛</span>
-          <div class="feature-detail__text">
-            <strong>Theme Toggle</strong>
-            Switch between light (XP Luna) and dark (Retro Night) from the extension popup.
-          </div>
-        </div>
-      </div>
-
-      <!-- ── Developer / Admin ── -->
-      <h2 class="section-label">🛠 Developer / Admin</h2>
-      <div class="feature-detail">
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">🔑</span>
-          <div class="feature-detail__text">
-            <strong>Admin Reset Endpoint</strong>
-            <code>POST /api/rep-admin</code> with <code>{ "action": "reset-all" }</code> wipes all reputation data. Admin-key protected.
-          </div>
-        </div>
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">📡</span>
-          <div class="feature-detail__text">
-            <strong>Health Check</strong>
-            <code>GET /api/health</code> returns API status and uptime metrics.
-          </div>
-        </div>
-        <div class="feature-detail__row">
-          <span class="feature-detail__icon" aria-hidden="true">🏗</span>
-          <div class="feature-detail__text">
-            <strong>Open Source</strong>
-            Full source on GitHub. The API is serverless (Vercel functions) and the extension is plain JS — no build step required.
-          </div>
-        </div>
-      </div>
-
-      <div class="mb-24">
-        <a href="install.html" class="btn btn--cta">⬇ Get the Extension</a>
-      </div>
-
-      <!-- ── Footer ── -->
-      <footer class="site-footer" role="contentinfo">
-        <span>&copy; 2026 Vortex07 &nbsp;·&nbsp; v2.6.0</span>
-        <nav class="site-footer__links" aria-label="Footer links">
-          <a href="privacy.html">Privacy</a>
-          <a href="https://github.com/Logicnd/Vortex07" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="https://playvortex.io" target="_blank" rel="noopener noreferrer">playvortex.io</a>
-        </nav>
-      </footer>
-
     </div>
+
+    <footer class="site-footer">
+      <span>Made by <a href="https://github.com/Logicnd" target="_blank" rel="noopener noreferrer">Logicnd</a></span>
+      <span><a href="privacy.html">Privacy</a><a href="index.html">Home</a></span>
+    </footer>
   </main>
 
-<script src="js/theme.js"></script>
+  <script src="js/theme.js"></script>
 </body>
 </html>

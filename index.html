@@ -3,114 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Vortex07 — a free browser extension that reskins playvortex.io with a retro aesthetic. Global reputation, community forum, no account required.">
-  <title>Vortex07 — Make playvortex.io feel like 2007 again</title>
+  <meta name="description" content="Vortex07 — a Chrome extension for playvortex.io with a 2007-style look and a few extra features.">
+  <title>Vortex07</title>
   <link rel="stylesheet" href="css/main.css">
-  <script>
-    (function(){var t=localStorage.getItem('v07-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);})();
-  </script>
+  <script>(function(){var t=localStorage.getItem('v07-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);})();</script>
 </head>
 <body>
 
-  <!-- ── Sticky Navigation ── -->
-  <nav class="site-nav" role="navigation" aria-label="Main navigation">
-    <div class="nav__brand">
-      <a href="index.html" class="nav__logo">VORTEX<span>07</span></a>
-    </div>
+  <nav class="site-nav" aria-label="Main">
+    <a href="index.html" class="nav__logo">Vortex07</a>
     <ul class="nav__links">
       <li><a href="index.html" class="nav__link active" aria-current="page">Home</a></li>
-      <li><a href="features.html" class="nav__link">Features</a></li>
       <li><a href="install.html" class="nav__link">Install</a></li>
       <li><a href="forum.html" class="nav__link">Forum</a></li>
-      <li><a href="changelog.html" class="nav__link">Changelog</a></li>
-      <li><a href="https://github.com/Logicnd/Vortex07" class="nav__link nav__link--github" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
+      <li><a href="features.html" class="nav__link">Features</a></li>
+      <li><a href="https://github.com/Logicnd/Vortex07" class="nav__link" target="_blank" rel="noopener noreferrer">GitHub</a></li>
     </ul>
-    <button class="theme-toggle" aria-label="Toggle theme">⚙ Auto</button>
+    <button type="button" class="theme-toggle" aria-label="Toggle theme">Auto</button>
   </nav>
 
-  <main role="main">
+  <main class="wrap">
+    <div class="page-body">
+      <h1 class="page-title">Vortex07</h1>
+      <p class="lead">A small Chrome extension for playvortex.io. Old-school 2007-style look, plus rep, forum, and a few QoL tweaks.</p>
 
-    <!-- ── Hero ── -->
-    <section class="hero" aria-labelledby="hero-headline">
-      <div class="hero__eyebrow">VORTEX07</div>
-      <h1 class="hero__headline" id="hero-headline">Make playvortex.io<br>feel like 2007 again.</h1>
-      <p class="hero__sub">A free browser extension. Retro UI, global reputation, community forum. No account required.</p>
-      <div class="hero__actions">
-        <a href="/releases/vortex07-2.6.0.zip" class="btn btn--cta">⬇ Download v2.6.0</a>
-        <a href="https://github.com/Logicnd/Vortex07" class="btn btn--ghost" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      <div class="home-grid">
+        <div class="home-block">
+          <h2 class="section-title">Download the latest build</h2>
+          <div class="btn-row">
+            <a href="vortex07.zip" class="btn btn--primary" download>Download Vortex07</a>
+            <a href="install.html" class="btn btn--secondary">How to install</a>
+          </div>
+          <p class="note">ZIP for Chrome, Edge, Brave, or Firefox. Unpacked install.</p>
+        </div>
+        <div class="home-block">
+          <h2 class="section-title">Quick install</h2>
+          <ol class="steps">
+            <li><div>Download &amp; extract the ZIP.</div></li>
+            <li><div><code>chrome://extensions</code> → Developer mode → Load unpacked.</div></li>
+            <li><div>Open playvortex.io and hard refresh.</div></li>
+          </ol>
+          <p class="note"><a href="forum.html">Forum</a> · <a href="install.html">Full guide</a></p>
+        </div>
       </div>
-      <div class="hero__pills">
-        <span class="pill">🎨 Retro 2007 UI</span>
-        <span class="pill">⭐ Global Reputation</span>
-        <span class="pill">💬 Community Forum</span>
-        <span class="pill">🌑 Dark Mode</span>
-      </div>
-    </section>
-
-    <!-- ── What's new ── -->
-    <div class="shell">
-      <h2 class="section-label">What's new in v2.6.0</h2>
-      <div class="glass-panel">
-        <ul class="bullet-list">
-          <li><code>content.js</code> split into 8 focused modules — was 10,383 lines, core is now 2,124 (<code>hover-ui</code>, <code>rep-ui</code>, <code>game-rating-ui</code>, <code>profile-ui</code>, <code>guestbook-ui</code>, <code>layout-ui</code>, <code>search-ui</code>, <code>friends-ui</code>)</li>
-          <li><code>styles.css</code> split into 9 CSS partials — tokens, dark, jvortex, reset, layout, components, friends, profile, forum</li>
-          <li>Carousel arrow DOM bug fixed — friends-grid was being wrapped inside the section header node</li>
-          <li>Cloudflare Turnstile CAPTCHA added to reputation votes with graceful degradation</li>
-          <li>IP daily rate limiting — 15 rep votes per IP per day (anti-alt-farm)</li>
-          <li><code>isVoteMethod</code> undefined bug fixed — vote POSTs were silently returning 405, votes now work correctly</li>
-          <li>Admin <code>reset-all</code> endpoint: <code>POST /api/rep-admin</code> with <code>{ action: "reset-all" }</code></li>
-          <li>Icon assets resized from 1024×1024 (~3 MB) to correct 16 / 48 / 128 px dimensions</li>
-        </ul>
-      </div>
-
-      <!-- ── Features grid ── -->
-      <h2 class="section-label">Features</h2>
-      <div class="feature-grid" role="list">
-        <article class="feature-cell" role="listitem">
-          <div class="feature-cell__icon" aria-hidden="true">🎨</div>
-          <div class="feature-cell__title">2007 Roblox Aesthetic</div>
-          <p class="feature-cell__desc">Section headers, XP chrome borders, retro purple palette, and pixel-perfect fonts.</p>
-        </article>
-        <article class="feature-cell" role="listitem">
-          <div class="feature-cell__icon" aria-hidden="true">👥</div>
-          <div class="feature-cell__title">Friends Carousel</div>
-          <p class="feature-cell__desc">A–Z sorted friends list, 10 per page with arrow navigation and live search by name.</p>
-        </article>
-        <article class="feature-cell" role="listitem">
-          <div class="feature-cell__icon" aria-hidden="true">⭐</div>
-          <div class="feature-cell__title">Global Reputation</div>
-          <p class="feature-cell__desc">Vote on any player, see a community leaderboard, and track your own score.</p>
-        </article>
-        <article class="feature-cell" role="listitem">
-          <div class="feature-cell__icon" aria-hidden="true">💬</div>
-          <div class="feature-cell__title">Community Forum</div>
-          <p class="feature-cell__desc">Built-in discussion tab powered by the Vortex07 API — no external site needed.</p>
-        </article>
-        <article class="feature-cell" role="listitem">
-          <div class="feature-cell__icon" aria-hidden="true">🌑</div>
-          <div class="feature-cell__title">Retro Night Theme</div>
-          <p class="feature-cell__desc">Zero white in dark mode. Deep purple tones that stay true to the XP aesthetic.</p>
-        </article>
-        <article class="feature-cell" role="listitem">
-          <div class="feature-cell__icon" aria-hidden="true">🔒</div>
-          <div class="feature-cell__title">Privacy-First</div>
-          <p class="feature-cell__desc">No tracking, no account required. Settings stored locally in your browser only.</p>
-        </article>
-      </div>
-
-      <!-- ── Footer ── -->
-      <footer class="site-footer" role="contentinfo">
-        <span>&copy; 2026 Vortex07 &nbsp;·&nbsp; v2.6.0</span>
-        <nav class="site-footer__links" aria-label="Footer links">
-          <a href="privacy.html">Privacy</a>
-          <a href="https://github.com/Logicnd/Vortex07" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a href="https://playvortex.io" target="_blank" rel="noopener noreferrer">playvortex.io</a>
-        </nav>
-      </footer>
     </div>
 
+    <footer class="site-footer">
+      <span>Made by <a href="https://github.com/Logicnd" target="_blank" rel="noopener noreferrer">Logicnd</a></span>
+      <span>
+        <a href="privacy.html">Privacy</a>
+        <a href="changelog.html">Changelog</a>
+        <a href="https://playvortex.io" target="_blank" rel="noopener noreferrer">playvortex.io</a>
+      </span>
+    </footer>
   </main>
 
-<script src="js/theme.js"></script>
+  <script src="js/theme.js"></script>
 </body>
 </html>
