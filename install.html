@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="How to install Vortex07 on Chrome, Edge, Brave, and Firefox. Step-by-step guide.">
+  <title>Install — Vortex07</title>
+  <link rel="stylesheet" href="css/main.css">
+  <script>
+    (function(){var t=localStorage.getItem('v07-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);})();
+  </script>
+</head>
+<body>
+
+  <!-- ── Sticky Navigation ── -->
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__brand">
+      <a href="index.html" class="nav__logo">VORTEX<span>07</span></a>
+    </div>
+    <ul class="nav__links">
+      <li><a href="index.html" class="nav__link">Home</a></li>
+      <li><a href="features.html" class="nav__link">Features</a></li>
+      <li><a href="install.html" class="nav__link active" aria-current="page">Install</a></li>
+      <li><a href="forum.html" class="nav__link">Forum</a></li>
+      <li><a href="changelog.html" class="nav__link">Changelog</a></li>
+      <li><a href="https://github.com/Logicnd/Vortex07" class="nav__link nav__link--github" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
+    </ul>
+    <button class="theme-toggle" aria-label="Toggle theme">⚙ Auto</button>
+  </nav>
+
+  <main role="main">
+    <div class="shell page-content">
+
+      <!-- ── Download banner ── -->
+      <div class="download-banner">
+        <div>
+          <div class="download-banner__title">VORTEX07 v2.6.0</div>
+          <div class="download-banner__sub">Manual install &nbsp;·&nbsp; Chrome · Edge · Brave · Firefox</div>
+        </div>
+        <a href="https://github.com/Logicnd/Vortex07/releases/download/v2.6.0/vortex07-2.6.0.zip" class="btn btn--cta">⬇ Download ZIP</a>
+      </div>
+
+      <!-- ── Chrome / Edge / Brave ── -->
+      <h2 class="section-label">Chrome · Edge · Brave — Unpacked Install</h2>
+      <ol class="install-steps" aria-label="Chrome installation steps">
+        <li class="install-step">
+          <div class="install-step__content">
+            <div class="install-step__title">Download the ZIP</div>
+            <p class="install-step__desc">Click "Download ZIP" above to save <code>vortex07-2.6.0.zip</code> to your computer.</p>
+          </div>
+        </li>
+        <li class="install-step">
+          <div class="install-step__content">
+            <div class="install-step__title">Extract the folder</div>
+            <p class="install-step__desc">Right-click the ZIP and choose "Extract All". Put the resulting folder somewhere permanent — moving it later will break the extension.</p>
+          </div>
+        </li>
+        <li class="install-step">
+          <div class="install-step__content">
+            <div class="install-step__title">Open the Extensions page</div>
+            <p class="install-step__desc">In Chrome or Edge, navigate to <code>chrome://extensions</code>. In Brave, go to <code>brave://extensions</code>.</p>
+          </div>
+        </li>
+        <li class="install-step">
+          <div class="install-step__content">
+            <div class="install-step__title">Enable Developer Mode</div>
+            <p class="install-step__desc">Toggle the <strong>Developer mode</strong> switch in the top-right corner of the extensions page. The toolbar will show new buttons.</p>
+          </div>
+        </li>
+        <li class="install-step">
+          <div class="install-step__content">
+            <div class="install-step__title">Load Unpacked</div>
+            <p class="install-step__desc">Click <strong>Load unpacked</strong>, then select the extracted <code>vortex07-2.6.0</code> folder (the one containing <code>manifest.json</code>).</p>
+          </div>
+        </li>
+        <li class="install-step">
+          <div class="install-step__content">
+            <div class="install-step__title">Visit playvortex.io</div>
+            <p class="install-step__desc">Navigate to <a href="https://playvortex.io" target="_blank" rel="noopener noreferrer">playvortex.io</a> and do a hard refresh (<code>Ctrl+Shift+R</code> / <code>Cmd+Shift+R</code>). The retro theme should appear immediately.</p>
+          </div>
+        </li>
+      </ol>
+
+      <!-- ── Firefox ── -->
+      <h2 class="section-label">Firefox — Temporary Install</h2>
+      <ol class="install-steps" aria-label="Firefox installation steps">
+        <li class="install-step">
+          <div class="install-step__content">
+            <div class="install-step__title">Download &amp; extract the ZIP</div>
+            <p class="install-step__desc">Same as steps 1–2 above. Extract to a permanent location.</p>
+          </div>
+        </li>
+        <li class="install-step">
+          <div class="install-step__content">
+            <div class="install-step__title">Open about:debugging</div>
+            <p class="install-step__desc">In Firefox, type <code>about:debugging</code> in the address bar and press Enter.</p>
+          </div>
+        </li>
+        <li class="install-step">
+          <div class="install-step__content">
+            <div class="install-step__title">This Firefox &rarr; Load Temporary Add-on</div>
+            <p class="install-step__desc">Click <strong>This Firefox</strong> in the left sidebar, then click <strong>Load Temporary Add-on…</strong> and select the <code>manifest.json</code> file inside the extracted folder.</p>
+          </div>
+        </li>
+        <li class="install-step">
+          <div class="install-step__content">
+            <div class="install-step__title">Visit playvortex.io</div>
+            <p class="install-step__desc">Navigate to <a href="https://playvortex.io" target="_blank" rel="noopener noreferrer">playvortex.io</a> and hard refresh. Note: Firefox temporary add-ons are removed when the browser is closed — you'll need to re-load after each browser restart.</p>
+          </div>
+        </li>
+      </ol>
+
+      <!-- ── Notes ── -->
+      <h2 class="section-label">Notes &amp; Troubleshooting</h2>
+      <div class="glass-panel">
+        <ul class="bullet-list">
+          <li>The extension only activates on <strong>playvortex.io</strong> — it has no effect on other sites.</li>
+          <li>If the theme doesn't appear, try a full hard refresh: <code>Ctrl+Shift+R</code> (Windows/Linux) or <code>Cmd+Shift+R</code> (Mac).</li>
+          <li>Make sure you selected the folder containing <code>manifest.json</code> (not the ZIP itself, and not a parent folder).</li>
+          <li>Moving the extension folder after loading will break it — you'll need to "Load unpacked" again.</li>
+          <li>Reputation votes require the Vortex07 API at <code>vortex07.vercel.app</code> — they won't work offline.</li>
+          <li>To update, replace the folder contents with the new ZIP and click the reload icon on <code>chrome://extensions</code>.</li>
+        </ul>
+      </div>
+
+      <!-- ── Footer ── -->
+      <footer class="site-footer" role="contentinfo">
+        <span>&copy; 2026 Vortex07 &nbsp;·&nbsp; v2.6.0</span>
+        <nav class="site-footer__links" aria-label="Footer links">
+          <a href="privacy.html">Privacy</a>
+          <a href="https://github.com/Logicnd/Vortex07" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://playvortex.io" target="_blank" rel="noopener noreferrer">playvortex.io</a>
+        </nav>
+      </footer>
+
+    </div>
+  </main>
+
+<script src="js/theme.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vortex07 privacy policy — no personal data collected, no tracking, no analytics.">
+  <title>Privacy Policy — Vortex07</title>
+  <link rel="stylesheet" href="css/main.css">
+  <script>
+    (function(){var t=localStorage.getItem('v07-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);})();
+  </script>
+</head>
+<body>
+
+  <!-- ── Sticky Navigation ── -->
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__brand">
+      <a href="index.html" class="nav__logo">VORTEX<span>07</span></a>
+    </div>
+    <ul class="nav__links">
+      <li><a href="index.html" class="nav__link">Home</a></li>
+      <li><a href="features.html" class="nav__link">Features</a></li>
+      <li><a href="install.html" class="nav__link">Install</a></li>
+      <li><a href="forum.html" class="nav__link">Forum</a></li>
+      <li><a href="changelog.html" class="nav__link">Changelog</a></li>
+      <li><a href="https://github.com/Logicnd/Vortex07" class="nav__link nav__link--github" target="_blank" rel="noopener noreferrer">GitHub ↗</a></li>
+    </ul>
+    <button class="theme-toggle" aria-label="Toggle theme">⚙ Auto</button>
+  </nav>
+
+  <main role="main">
+    <div class="shell page-content">
+
+      <h2 class="section-label">Privacy Policy</h2>
+
+      <div class="content-body">
+
+        <p>Effective date: June 2026 &nbsp;·&nbsp; Applies to: Vortex07 browser extension and this website.</p>
+
+        <h2>What We Collect</h2>
+        <p>
+          Vortex07 does not collect, store, or transmit personal data.
+          No names, emails, IP addresses (beyond standard server logs), or personal information of any kind are
+          gathered by this extension or website.
+        </p>
+
+        <h2>Extension Settings</h2>
+        <p>
+          All extension settings — theme preference, enabled features, and UI options — are stored exclusively in
+          your browser's local storage via <code>chrome.storage.local</code>.
+          This data never leaves your device and is not accessible to us.
+        </p>
+
+        <h2>Reputation System</h2>
+        <p>
+          The optional reputation voting feature sends only the following to the Vortex07 API:
+        </p>
+        <ul class="bullet-list" style="margin-bottom: 12px;">
+          <li>The numeric <strong>user ID</strong> of the player being voted on (a public identifier from playvortex.io)</li>
+          <li>The numeric <strong>user ID</strong> of the voter (your public playvortex.io ID)</li>
+          <li>The vote value (+1 or −1)</li>
+        </ul>
+        <p>
+          No display names, emails, or personal information are transmitted.
+          The API uses IP addresses transiently for rate-limiting (max 15 votes/IP/day) but does not log or store them persistently.
+        </p>
+
+        <h2>Forum</h2>
+        <p>
+          Forum threads and posts are stored by the Vortex07 API and are publicly readable.
+          Posts contain only the text you write and your playvortex.io user ID.
+          Do not include personal information in forum posts.
+        </p>
+
+        <h2>Analytics &amp; Tracking</h2>
+        <p>
+          There are <strong>no analytics, tracking pixels, cookies, or third-party scripts</strong> on this website or
+          in the browser extension. No data is shared with advertising networks or third parties.
+        </p>
+
+        <h2>Third-Party Services</h2>
+        <p>
+          The Vortex07 API is hosted on <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">Vercel</a>,
+          which may collect standard server access logs (IP address, timestamp, URL) as part of their infrastructure.
+          These logs are subject to <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Vercel's privacy policy</a>.
+          Reputation vote submissions optionally pass through
+          <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Cloudflare Turnstile</a>
+          for bot protection — Turnstile is a privacy-preserving CAPTCHA that does not use persistent cookies or fingerprinting.
+        </p>
+
+        <h2>Open Source</h2>
+        <p>
+          The full source code for the extension and API is available on
+          <a href="https://github.com/Logicnd/Vortex07" target="_blank" rel="noopener noreferrer">GitHub</a>.
+          You can audit exactly what data is sent and when.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          Questions about this policy? Open an issue on the
+          <a href="https://github.com/Logicnd/Vortex07/issues" target="_blank" rel="noopener noreferrer">GitHub repository</a>.
+        </p>
+
+      </div>
+
+      <!-- ── Footer ── -->
+      <footer class="site-footer" role="contentinfo">
+        <span>&copy; 2026 Vortex07 &nbsp;·&nbsp; v2.6.0</span>
+        <nav class="site-footer__links" aria-label="Footer links">
+          <a href="privacy.html">Privacy</a>
+          <a href="https://github.com/Logicnd/Vortex07" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://playvortex.io" target="_blank" rel="noopener noreferrer">playvortex.io</a>
+        </nav>
+      </footer>
+
+    </div>
+  </main>
+
+<script src="js/theme.js"></script>
+</body>
+</html>
